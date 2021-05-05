@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -9,6 +11,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
+    [LogAspect(typeof(FileLogger))]
     public class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
