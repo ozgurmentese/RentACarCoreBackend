@@ -34,6 +34,8 @@ namespace WebAPI
         {
             services.AddControllers();
 
+            services.AddCors();
+
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -58,6 +60,8 @@ namespace WebAPI
                new CoreModule()
             });
 
+            services.AddSwaggerDocument();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,11 +72,21 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigureCustomExceptionMiddleware();
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200", "http://localhost:51517").AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseOpenApi();
+
+            app.UseSwaggerUi3();
 
             app.UseEndpoints(endpoints =>
             {

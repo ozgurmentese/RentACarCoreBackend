@@ -30,12 +30,11 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BrandMap());
+            modelBuilder.ApplyConfiguration(new CarImageMap());
             modelBuilder.ApplyConfiguration(new CarMap());
-            modelBuilder.ApplyConfiguration(new BrandMap());
+            modelBuilder.ApplyConfiguration(new ColorMap());
             modelBuilder.ApplyConfiguration(new CustomerMap());
             modelBuilder.ApplyConfiguration(new RentalMap());
-            modelBuilder.ApplyConfiguration(new CarImageMap());
         }
-
     }
 }

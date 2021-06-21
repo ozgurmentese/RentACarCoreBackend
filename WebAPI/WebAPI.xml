@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.AuthController.#ctor(Business.Abstract.IAuthService)">
+            <summary>
+            Kayıt ve giriş İşlemleri
+            </summary>
+            <param name="authService"></param>
+        </member>
+        <member name="M:WebAPI.Controllers.AuthController.Login(Entities.DTOs.UserForLoginDto)">
+            <summary>
+            Giriş Yapmak için kulanılır
+            </summary>
+            <param name="userForLoginDto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

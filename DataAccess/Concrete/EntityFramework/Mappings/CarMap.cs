@@ -18,10 +18,13 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.Id).HasColumnName("Id");
             builder.Property(c => c.BrandId).HasColumnName("BrandId");
             builder.Property(c => c.ColorId).HasColumnName("ColorId");
-            builder.Property(c => c.Name).HasColumnName("Name");
+            builder.Property(c => c.CarName).HasColumnName("Name");
             builder.Property(c => c.ModelYear).HasColumnName("ModelYear");
             builder.Property(c => c.DailyPrice).HasColumnName("DailyPrice");
             builder.Property(c => c.Description).HasColumnName("Description");
+            builder.Property(c => c.EnginePower).HasColumnName("EnginePower");
+            builder.Property(c => c.FuelType).HasColumnName("FuelType");
+            builder.Property(c => c.GearType).HasColumnName("GearType");
         }
     }
 }

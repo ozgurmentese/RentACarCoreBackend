@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(c => c.Id).HasColumnName("Id");
             builder.Property(c => c.CarId).HasColumnName("CarId");
-            builder.Property(c => c.CustomerId).HasColumnName("CustomerId");
+            builder.Property(c => c.UserId).HasColumnName("UserId");
             builder.Property(c => c.RentDate).HasColumnName("RentDate");
             builder.Property(c => c.ReturnDate).HasColumnName("ReturnDate");
         }

@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Logging;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -14,38 +17,43 @@ namespace Business.Concrete
     [LogAspect(typeof(FileLogger))]
     public class BrandManager : IBrandService
     {
-        IBrandDal _brandDal;
+        readonly IBrandDal _brandDal;
         public BrandManager(IBrandDal brandDal)
         {
             _brandDal = brandDal;
         }
 
+        [SecuredOperation("admin")]
+        //[ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(Messages.BrandAdded);
         }
 
+        [SecuredOperation("admin")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandListed);
         }
 
-        public IDataResult<Brand> GetById(int id)
+        public IDataResult<Brand> GetByBrandId(int brandId)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b=>b.Id==id), Messages.Listed);
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == brandId));
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(Messages.BrandUpdate);
         }
     }
 }

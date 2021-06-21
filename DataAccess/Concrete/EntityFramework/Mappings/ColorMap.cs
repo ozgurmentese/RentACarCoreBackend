@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id).HasColumnName("Id");
-            builder.Property(c => c.Name).HasColumnName("Name");
+            builder.Property(c => c.ColorName).HasColumnName("Name");
         }
     }
 }
