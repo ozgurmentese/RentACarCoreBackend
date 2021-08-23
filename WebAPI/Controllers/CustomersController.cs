@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        ICustomerService _customerService;
+        readonly ICustomerService _customerService;
 
         public CustomersController(ICustomerService customerService)
         {
@@ -21,7 +21,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-
         public IActionResult GetAll()
         {
             var result = _customerService.GetCustomerDetails();
@@ -33,7 +32,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycustomerid")]
-
         public IActionResult GetByCustomerId(int id)
         {
             var result = _customerService.GetById(id);
@@ -43,8 +41,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("getbyuserid")]
 
+        [HttpGet("getbyuserid")]
         public IActionResult GetByUserId(int id)
         {
             var result = _customerService.GetCustomerDetailsByUserId(id);
@@ -54,6 +52,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("email")]
         public IActionResult Email(string email)
         {

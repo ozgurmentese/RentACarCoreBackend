@@ -9,8 +9,8 @@ namespace Core.Utilities.Helpers
 {
     public class FileHelper
     {
-        static string directory = Directory.GetCurrentDirectory() + @"\wwwroot\";
-        static string path = @"Images\";
+        static readonly string directory = Directory.GetCurrentDirectory() + @"\wwwroot\";
+        static readonly string path = @"Images\";
 
         public static string Add(IFormFile file)
         {

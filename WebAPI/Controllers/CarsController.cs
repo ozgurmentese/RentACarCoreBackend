@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        ICarService _carService;
+        readonly ICarService _carService;
 
         public CarsController(ICarService carService)
         {
@@ -21,7 +21,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
@@ -33,7 +32,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbybrandid")]
-
         public IActionResult GetCarDetailsByBrandId(int id)
         {
             var result = _carService.GetCarDetailsByBrandId(id);
@@ -45,7 +43,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycolorid")]
-
         public IActionResult GetByColorId(int id)
         {
             var result = _carService.GetCarsByColorId(id);
@@ -55,7 +52,6 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
 
         [HttpGet("getcardetails")]
         public IActionResult GetCarDetails()
@@ -78,6 +74,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getbycarid")]
         public IActionResult GetByCarId(int id)
         {

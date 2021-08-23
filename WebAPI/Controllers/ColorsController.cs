@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ColorsController : ControllerBase
     {
-        IColorService _colorService;
+        readonly IColorService _colorService;
 
         public ColorsController(IColorService colorService)
         {
@@ -30,8 +30,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("getbycolorid")]
 
+        [HttpGet("getbycolorid")]
         public IActionResult GetByColorId(int id)
         {
             var result = _colorService.GetById(id);

@@ -5,11 +5,13 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -24,9 +26,17 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin")]
-        //[ValidationAspect(typeof(BrandValidator))]
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
+            IResult result = BusinessRules.Run(
+                    CheckIfBrandNameExists(brand.BrandName)
+                );
+            if (result != null)
+            {
+                return result;
+            }
+
             _brandDal.Add(brand);
             return new SuccessResult(Messages.BrandAdded);
         }
@@ -54,6 +64,16 @@ namespace Business.Concrete
         {
             _brandDal.Update(brand);
             return new SuccessResult(Messages.BrandUpdate);
+        }
+
+        private IResult CheckIfBrandNameExists(string brandName)
+        {
+            var result = _brandDal.GetAll(b => b.BrandName == brandName).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.BrandNameAlreadyExists);
+            }
+            return new SuccessResult();
         }
     }
 }

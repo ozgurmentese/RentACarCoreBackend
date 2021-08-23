@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService _userService;
+        readonly IUserService _userService;
 
         public UsersController(IUserService userService)
         {
@@ -31,6 +31,7 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
         [HttpGet("id")]
         public IActionResult GetById(int id)
         {
@@ -41,6 +42,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -51,6 +53,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("updateprofile")]
         public IActionResult ProfileUpdate(UserForUpdateDto userForUpdateDto)
         {
@@ -61,6 +64,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("email")]
         public IActionResult GetByMail(string email)
         {
@@ -78,6 +82,5 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
     }
 }

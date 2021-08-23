@@ -19,6 +19,7 @@ namespace Business.Constants
         public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
 
         public static string CarListed = "Arabalar listelendi";
+        public static string CarNameAlreadyExists = "Bu isimde zaten başka bir araba adı var";
         public static string DataUpdated = "Veri güncellendi";
         public static string DataDeleted = "Veri silindi";
         public static string DailyPriceInvalid = "Günlük fiyatı geçersiz";
@@ -30,11 +31,15 @@ namespace Business.Constants
         public static string BrandDeleted = "Marka silindi";
         public static string BrandListed = "Marka listelendi";
         public static string BrandUpdate = "Marka güncellendi";
+        public static string BrandNameAlreadyExists = "Bu isimde zaten başka bir marka adı var";
+
 
 
         public static string ColorAdded = "Renk eklendi";
         public static string ColorDeleted = "Renk silindi";
         public static string ColorUpdated = "Renk güncellendi";
+        public static string ColorNameAlreadyExists = "Bu isimde zaten başka bir renk adı var";
+
 
 
         public static string CustomerAdded = "Müşteri eklendi";

@@ -27,7 +27,6 @@ namespace Business.Concrete
             _carImageDal = carimageDal;
         }
 
-
         //[SecuredOperation("admin")]
         [CacheRemoveAspect("ICarImageService.Get")]
         [ValidationAspect(typeof(CarImageValidator))]
@@ -46,7 +45,7 @@ namespace Business.Concrete
             carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ImageAdded);
         }
 
         [SecuredOperation("admin")]
@@ -60,7 +59,6 @@ namespace Business.Concrete
             {
                 return result;
             }
-
 
             var image = _carImageDal.Get(c => c.Id == carImage.Id);
             if (image == null)

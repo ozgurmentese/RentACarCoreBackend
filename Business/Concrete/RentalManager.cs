@@ -18,7 +18,7 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-        IRentalDal _rentalDal;
+        readonly IRentalDal _rentalDal;
 
         public RentalManager(IRentalDal rentalDal)
         {

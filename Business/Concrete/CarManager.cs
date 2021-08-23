@@ -48,7 +48,9 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            IResult result = BusinessRules.Run();
+            IResult result = BusinessRules.Run(
+                    CheckIfCarNameExists(car.CarName)
+                );
             if (result != null)
             {
                 return result;
@@ -90,7 +92,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetailsByColorId(int colorId)
         {
-            if (colorId<1)
+            if (colorId < 1)
             {
                 return new ErrorDataResult<List<CarDetailDto>>("Veri yok");
             }
@@ -100,6 +102,16 @@ namespace Business.Concrete
         public IDataResult<Car> GetByCarId(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
+        }
+
+        private IResult CheckIfCarNameExists(string carName)
+        {
+            var result = _carDal.GetAll(c => c.CarName == carName).Count;
+            if (result > 0)
+            {
+                return new ErrorResult(Messages.CarNameAlreadyExists);
+            }
+            return new SuccessResult();
         }
     }
 }

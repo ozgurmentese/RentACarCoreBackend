@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarImagesController : ControllerBase
     {
-        ICarImageService _carImageService;
+        readonly ICarImageService _carImageService;
 
         public CarImagesController(ICarImageService carImageService)
         {
@@ -22,7 +22,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-
         public IActionResult GetAll()
         {
             var result = _carImageService.GetAll();
@@ -34,7 +33,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getimagesbyid")]
-
         public IActionResult GetImagesById(int id)
         {
             var result = _carImageService.GetImagesById(id);

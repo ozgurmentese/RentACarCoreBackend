@@ -16,6 +16,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (RentACarContext context = new RentACarContext())
             {
+
                 var result = from rentals in context.Rentals
                              join cars in context.Cars
                              on rentals.CarId equals cars.Id
@@ -39,12 +40,13 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarId = cars.Id,
 
                                  TotalRentDay = (rentals.ReturnDate.Value.Day - rentals.RentDate.Day +
-                                 (rentals.ReturnDate.Value.Month - rentals.RentDate.Month) * 30 + 
+                                 (rentals.ReturnDate.Value.Month - rentals.RentDate.Month) * 30 +
                                  (rentals.ReturnDate.Value.Year - rentals.RentDate.Year) * 365),
 
-                                 TotalPrice = Convert.ToDecimal(rentals.ReturnDate.Value.Day - rentals.RentDate.Day 
-                                 + (rentals.ReturnDate.Value.Month - rentals.RentDate.Month) * 30 + 
+                                 TotalPrice = Convert.ToDecimal(rentals.ReturnDate.Value.Day - rentals.RentDate.Day
+                                 + (rentals.ReturnDate.Value.Month - rentals.RentDate.Month) * 30 +
                                  (rentals.ReturnDate.Value.Year - rentals.RentDate.Year) * 365) * cars.DailyPrice
+
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
